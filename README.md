@@ -21,7 +21,7 @@ Download the PEM file (LightsailDefaultPrivateKey-us-west-2.pem) from Account Pa
 * `sudo apt-get update`
 * `sudo apt-get upgrade`
 
-4. Change the SSH port from 22 to 2200. Make sure to configure the Lightsail firewall to allow it.
+4. Change the SSH port from 22 to 2200. Make sure to configure the Lightsail firewall to allow it.<br/>
 In the Amazon Lightsail instance online (Webpage) go to Networking tab and under Firewall click on Add Another. Add Custom TCP port 2200 and save changes.
 
 Update the port number from 22 to 2200 and save the /etc/ssh/sshd_config file
@@ -49,31 +49,31 @@ Firewall is active and enabled on system startup
 
 7. Give grader the permission to sudo.
 * `sudo touch /etc/sudoers.d/grader`
-* `sudo nano /etc/sudoers.d/grader`
-Update the grader file in shudders.d folder with below content
+* `sudo nano /etc/sudoers.d/grader`<br/> 
+Update the grader file in shudders.d folder with below content<br/> 
 grader ALL=(ALL:ALL) ALL
 
-8. Create an SSH key pair for grader using the ssh-keygen tool.
-Create SSH key pair on local machine for grader
-Private Key : grader_rsa
-Public Key : grader_rsa.pub
+8. Create an SSH key pair for grader using the ssh-keygen tool.<br/> 
+Create SSH key pair on local machine for grader<br/> 
+Private Key : grader_rsa<br/> 
+Public Key : grader_rsa.pub<br/> 
 * `ssh-keygen`
 
 On virtual machine login as grader.
 * `su - grader`
 
-Check for .ssh file which wont be there in grader folder.Create .ssh file under grader folder.
+Check for .ssh file which wont be there in grader folder. Create .ssh file under grader folder.
 * `mkdir .ssh`
 
-Create authorized_keys file with in .ssh folder which will store all the public keys that this account is allowed to use for authentication
-touch .ssh/authorized_keys
+Create authorized_keys file with in .ssh folder which will store all the public keys that this account is allowed to use for authentication<br/> 
+touch .ssh/authorized_keys<br/> 
 
 Copy the public key which was created locally.
-* ` nano .ssh/authorized_keys`
+* ` nano .ssh/authorized_keys`<br/> 
 
-Edit the .ssh/authorized_keys to copy the key from /grader_rsa.pub which was created locally. Save and Exit.
+Edit the .ssh/authorized_keys to copy the key from /grader_rsa.pub which was created locally. Save and Exit.<br/> 
 
-Set the permissions using below commands.
+Set the permissions using below commands.<br/> 
 * `chmod 700 .ssh`
 * `chmod 644 .ssh/authorized_keys`
 
@@ -157,8 +157,10 @@ Connect to database
 13. Clone and setup your Item Catalog project from the Github repository you created earlier in this Nanodegree program.
 
 Change to the www directory cd /var/www
-Make a new directory called catalog sudo mkdir catalog
-Change the owner to grader sudo chown -R grader:grader catalog
+Make a new directory called catalog 
+* `sudo mkdir catalog`
+Change the owner to grader 
+* `sudo chown -R grader:grader catalog`<br/>
 Change to the new directory cd catalog
 
 Clone the github repo
@@ -167,13 +169,13 @@ Clone the github repo
 Create a new catalog.wsgi file in the /var/www/catalog/ directory and open it in nano sudo nano catalog.wsgi
 
 Add the following code: Save the changes and exit
-#!usr/bin/python
-import sys
-import logging
-logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0,"/var/www/catalog")
-from item_catalog import app as application
-application.secret_key = 'super_secret_key'
+#!usr/bin/python<br/>
+import sys<br/>
+import logging<br/>
+logging.basicConfig(stream=sys.stderr)<br/>
+sys.path.insert(0,"/var/www/catalog")<br/>
+from item_catalog import app as application<br/>
+application.secret_key = 'super_secret_key'<br/>
 
 Copy your main project file (application.py) into the __init__.py file 
 * `mv application.py __init__.py`
@@ -186,10 +188,10 @@ Create tables and populate with initial data by executing files database_setup.p
 Change the path of client_secrets.json in the __init__.py 
 
 Configure and enable virtual host sudo nano /etc/apache2/sites-available/caalog.conf and add this code:
-   ServerName <your PUBLIC_IP_ADDRESS>
-   ServerAdmin admin@YOUR_PUBLIC_IP_ADDRESS
-   ServerAlias YOUR_HOST_NAME
-   WSGIScriptAlias / /var/www/catalog/catalog.wsgi
+   ServerName <your PUBLIC_IP_ADDRESS><br/>
+   ServerAdmin admin@YOUR_PUBLIC_IP_ADDRESS<br/>
+   ServerAlias YOUR_HOST_NAME<br/>
+   WSGIScriptAlias / /var/www/catalog/catalog.wsgi<br/>
    <Directory /var/www/catalog/item_catalog/>
        Order allow,deny
        Allow from all
@@ -199,17 +201,17 @@ Configure and enable virtual host sudo nano /etc/apache2/sites-available/caalog.
        Order allow,deny
        Allow from all
    </Directory>
-   ErrorLog ${APACHE_LOG_DIR}/error.log
-   LogLevel warn
-   CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
+   ErrorLog ${APACHE_LOG_DIR}/error.log<br/>
+   LogLevel warn<br/>
+   CustomLog ${APACHE_LOG_DIR}/access.log combined<br/>
+</VirtualHost><br/>
 
 Enable the virtual host 
 * `sudo a2ensite catalog`
 
 Make sure that your .git directory is not publicly accessible via a browser.
 * `cd var/www/catalog/`
-* `sudo nano .htaccess`
+* `sudo nano .htaccess`<br/>
 Add the below, Save file and exit
 RedirectMatch 404 /\.git
 
