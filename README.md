@@ -168,7 +168,7 @@ Clone the github repo
 
 Create a new catalog.wsgi file in the /var/www/catalog/ directory and open it in nano sudo nano catalog.wsgi
 
-Add the following code: Save the changes and exit
+Add the following code: Save the changes and exit<br/>
 #!usr/bin/python<br/>
 import sys<br/>
 import logging<br/>
@@ -187,9 +187,10 @@ Create tables and populate with initial data by executing files database_setup.p
 
 Change the path of client_secrets.json in the __init__.py 
 
-Configure and enable virtual host sudo nano /etc/apache2/sites-available/caalog.conf and add this code:
-   ServerName <your PUBLIC_IP_ADDRESS><br/>
-   ServerAdmin admin@YOUR_PUBLIC_IP_ADDRESS<br/>
+Configure and enable virtual host sudo nano /etc/apache2/sites-available/caalog.conf and add this code:<br/>
+<VirtualHost *:80><br/>
+   ServerName YOUR PUBLIC_IP_ADDRESS <br/>
+   ServerAdmin admin@YOUR_PUBLIC_IP_ADDRESS <br/>
    ServerAlias YOUR_HOST_NAME<br/>
    WSGIScriptAlias / /var/www/catalog/catalog.wsgi<br/>
    <Directory /var/www/catalog/item_catalog/>
