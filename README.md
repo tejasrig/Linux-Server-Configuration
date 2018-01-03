@@ -3,6 +3,7 @@ This project explains how to setup a linux server with one of the web applicatio
 
 Vist the below link to access the application: 
 http://34.215.214.53
+http://ec2-34-215-214-53.us-west-2.compute.amazonaws.com
 
 Below are the steps followed for the entire setup. 
 
