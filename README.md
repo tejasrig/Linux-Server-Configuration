@@ -1,7 +1,7 @@
 # Linux Server Configuration 
 This project explains how to setup a linux server with one of the web application running live; Item Catalog Application is hosted for this project.
 
-Vist the below link to access the application: 
+Vist the below link to access the application: <br/>
 http://34.215.214.53 <br/>
 http://ec2-34-215-214-53.us-west-2.compute.amazonaws.com
 
